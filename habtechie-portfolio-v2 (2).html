@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habeebullah Sulyman — AI Automation Specialist</title>
+<meta name="description" content="AI Automation Specialist building AI agents, chatbots, RAG systems, and n8n workflow automation. Real projects, real architecture, no invented metrics.">
+<meta property="og:title" content="Habeebullah Sulyman — AI Automation Specialist">
+<meta property="og:description" content="AI agents, chatbots, RAG systems, and n8n workflow automation. Real projects, real architecture.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://habtechie.com/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%230A0A0C%22/><circle cx=%2250%22 cy=%2250%22 r=%2214%22 fill=%22%237C7AFF%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0A0C; --bg-2:#0E0E11;
+  --surface:#151519; --surface-2:#1C1C22;
+  --border: rgba(255,255,255,0.09); --border-strong: rgba(255,255,255,0.16);
+  --text:#F4F4F2; --text-dim:#A4A4AE; --text-faint:#63636D;
+  --accent:#7C7AFF; --accent-soft: rgba(124,122,255,0.14); --accent-line: rgba(124,122,255,0.35);
+  --radius: 14px;
+  --maxw: 1180px;
+  --font: 'Inter', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+*{margin:0; padding:0; box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.01ms !important; transition-duration:.01ms !important; animation-iteration-count:1 !important;} }
+body{background:var(--bg); color:var(--text); font-family:var(--font); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;}
+a{color:inherit; text-decoration:none;}
+img{max-width:100%; display:block;}
+::selection{background:var(--accent-soft); color:var(--text);}
+.skip-link{position:absolute; left:-999px; top:0; background:var(--accent); color:#fff; padding:10px 16px; z-index:200; border-radius:0 0 8px 0;}
+.skip-link:focus{left:0;}
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px;}
+
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+@media (max-width:600px){ .wrap{padding:0 20px;} }
+section{position:relative; padding:120px 0;}
+@media (max-width:760px){ section{padding:76px 0;} }
+
+.eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); display:inline-flex; align-items:center; gap:8px;}
+.eyebrow::before{content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent);}
+
+h1,h2,h3{font-weight:800; letter-spacing:-0.02em; color:var(--text);}
+.section-head{max-width:640px; margin-bottom:56px;}
+.section-head h2{font-size:clamp(30px,4vw,44px); margin-top:16px; line-height:1.1;}
+.section-head p{color:var(--text-dim); margin-top:14px; font-size:16px; max-width:60ch;}
+
+/* ---------------- NAV ---------------- */
+header{position:fixed; top:0; left:0; right:0; z-index:100; transition:background .3s ease, border-color .3s ease, padding .3s ease;}
+header.scrolled{background:rgba(10,10,12,0.78); backdrop-filter:blur(14px); border-bottom:1px solid var(--border);}
+nav.wrap{display:flex; align-items:center; justify-content:space-between; height:82px; transition:height .3s ease;}
+header.scrolled nav.wrap{height:64px;}
+.brand{display:flex; flex-direction:column; line-height:1.15;}
+.brand .name{font-weight:700; font-size:15px;}
+.brand .role{font-family:var(--mono); font-size:10.5px; color:var(--text-faint); letter-spacing:.05em;}
+.navlinks{display:flex; align-items:center; gap:30px;}
+.navlinks a.navitem{font-size:14px; color:var(--text-dim); transition:color .2s ease; position:relative;}
+.navlinks a.navitem:hover{color:var(--text);}
+.navlinks a.navitem.active{color:var(--text);}
+.navlinks a.navitem.active::after{content:''; position:absolute; bottom:-18px; left:0; right:0; height:2px; background:var(--accent); border-radius:2px;}
+.quickicons{display:flex; align-items:center; gap:14px; padding:0 2px; color:var(--text-faint);}
+.quickicon{color:var(--text-faint); display:flex; transition:color .2s ease;}
+.quickicon:hover{color:var(--accent);}
+.btn{font-family:var(--font); font-weight:600; font-size:14px; padding:11px 20px; border-radius:100px; border:1px solid var(--border-strong); color:var(--text); display:inline-flex; align-items:center; gap:8px; transition:all .2s ease; background:transparent; cursor:pointer; white-space:nowrap;}
+.btn:hover{border-color:var(--accent-line); background:var(--accent-soft);}
+.btn.filled{background:var(--accent); border-color:var(--accent); color:#fff;}
+.btn.filled:hover{background:#6a67f5; box-shadow:0 0 24px var(--accent-soft);}
+.mobile-toggle{display:none; background:none; border:none; color:var(--text); font-size:22px; cursor:pointer;}
+@media (max-width:840px){
+  .navlinks a.navitem{display:none;}
+  .navlinks .btn{display:none;}
+  .quickicons{display:none;}
+  .mobile-toggle{display:block;}
+}
+.mobile-menu{position:fixed; inset:0; background:rgba(8,8,10,0.98); z-index:99; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:26px; opacity:0; pointer-events:none; transition:opacity .25s ease;}
+.mobile-menu.open{opacity:1; pointer-events:auto;}
+.mobile-menu a{font-size:22px; font-weight:600;}
+.mobile-menu .close-x{position:absolute; top:26px; right:26px; font-size:28px; background:none; border:none; color:var(--text);}
+
+/* ---------------- HERO ---------------- */
+.hero{padding-top:180px; padding-bottom:80px; position:relative; overflow:hidden;}
+.hero-glow{position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:900px; height:900px; background:radial-gradient(circle, var(--accent-soft) 0%, transparent 65%); pointer-events:none; z-index:0; transition:transform .3s ease;}
+.hero-grid-bg{position:absolute; inset:0; background-image:linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size:64px 64px; mask-image:radial-gradient(ellipse 60% 50% at 50% 0%, black 30%, transparent 75%); opacity:.5; z-index:0;}
+.hero-inner{position:relative; z-index:2; display:grid; grid-template-columns:1.15fr .85fr; gap:50px; align-items:center;}
+@media (max-width:960px){ .hero-inner{grid-template-columns:1fr;} }
+.hero h1{font-size:clamp(32px,4.6vw,54px); line-height:1.08; margin:20px 0 22px; font-weight:500;}
+.hero p.lead{font-size:17.5px; color:var(--text-dim); max-width:52ch; margin-bottom:32px;}
+.hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+
+.hero-visual{position:relative; display:flex; align-items:center; justify-content:center; min-height:420px;}
+.photo-frame{position:relative; width:280px; height:340px; border-radius:20px; overflow:hidden; border:1px solid var(--border-strong); background:var(--surface);}
+.photo-frame img{width:100%; height:100%; object-fit:cover;}
+.photo-frame::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, transparent 55%, rgba(10,10,12,0.85) 100%);}
+.float-card{position:absolute; background:rgba(21,21,25,0.85); backdrop-filter:blur(10px); border:1px solid var(--border-strong); border-radius:10px; padding:10px 13px; font-family:var(--mono); font-size:11px; color:var(--text-dim); display:flex; align-items:center; gap:8px; box-shadow:0 12px 30px rgba(0,0,0,0.4); transition:transform .4s ease;}
+.float-card .status-dot{width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px var(--accent); flex-shrink:0;}
+.fc1{top:6%; left:-6%;}
+.fc2{bottom:16%; right:-10%;}
+.fc3{top:44%; right:-14%;}
+@media (max-width:960px){ .float-card{display:none;} }
+
+/* ---------------- WHAT I BUILD ---------------- */
+.build-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;}
+@media (max-width:900px){ .build-grid{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:520px){ .build-grid{grid-template-columns:1fr;} }
+.build-item{background:var(--bg); padding:28px 22px; cursor:default; transition:background .25s ease;}
+.build-item:hover{background:var(--surface);}
+.build-item .bi-name{font-size:16px; font-weight:700; margin-bottom:8px;}
+.build-item .bi-desc{font-size:13px; color:var(--text-dim); max-height:0; overflow:hidden; transition:max-height .3s ease, margin-top .3s ease;}
+.build-item:hover .bi-desc, .build-item:focus-within .bi-desc{max-height:80px; margin-top:8px;}
+.build-item .bi-tech{font-family:var(--mono); font-size:10.5px; color:var(--accent); margin-top:8px;}
+
+/* ---------------- PROJECTS ---------------- */
+.project-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
+@media (max-width:840px){ .project-grid{grid-template-columns:1fr;} }
+.project-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; cursor:pointer; transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease; display:flex; flex-direction:column; text-align:left; width:100%; color:inherit; font:inherit;}
+.project-card:hover{transform:translateY(-4px); border-color:var(--accent-line); box-shadow:0 20px 50px rgba(0,0,0,0.4), 0 0 0 1px var(--accent-line);}
+.project-media{aspect-ratio:16/10; overflow:hidden; background:var(--surface-2); position:relative;}
+.project-media img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
+.project-card:hover .project-media img{transform:scale(1.04);}
+.project-media .video-badge{position:absolute; top:12px; right:12px; background:rgba(10,10,12,0.75); backdrop-filter:blur(6px); border:1px solid var(--border-strong); padding:5px 10px; border-radius:100px; font-family:var(--mono); font-size:10.5px; display:flex; align-items:center; gap:5px;}
+.project-body{padding:22px 22px 24px;}
+.project-cat{font-family:var(--mono); font-size:10.5px; color:var(--accent); text-transform:uppercase; letter-spacing:.06em;}
+.project-body h3{font-size:18px; margin:8px 0 8px; font-weight:700;}
+.project-body p{color:var(--text-dim); font-size:13.5px;}
+.project-tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:14px;}
+.project-tags span{font-family:var(--mono); font-size:10.5px; color:var(--text-faint); border:1px solid var(--border); padding:3px 9px; border-radius:100px;}
+.view-case{margin-top:16px; font-size:13.5px; color:var(--accent); font-weight:600; display:inline-flex; align-items:center; gap:6px; transition:gap .2s ease;}
+.project-card:hover .view-case{gap:10px;}
+
+/* ---------------- MODAL ---------------- */
+.modal-overlay{position:fixed; inset:0; background:rgba(6,6,8,0.75); backdrop-filter:blur(6px); z-index:150; opacity:0; pointer-events:none; transition:opacity .25s ease; display:flex; align-items:flex-start; justify-content:center; padding:40px 20px; overflow-y:auto;}
+.modal-overlay.open{opacity:1; pointer-events:auto;}
+.modal{background:var(--bg-2); border:1px solid var(--border-strong); border-radius:20px; max-width:760px; width:100%; padding:0; margin:auto; transform:translateY(20px); transition:transform .3s ease;}
+.modal-overlay.open .modal{transform:translateY(0);}
+.modal-top{position:relative;}
+.modal-top img{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:20px 20px 0 0;}
+.modal-close{position:absolute; top:16px; right:16px; width:36px; height:36px; border-radius:50%; background:rgba(10,10,12,0.7); border:1px solid var(--border-strong); color:var(--text); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center;}
+.modal-body{padding:32px 34px 38px;}
+@media (max-width:600px){ .modal-body{padding:24px 20px 30px;} }
+.modal-body h2{font-size:26px; margin-bottom:6px;}
+.modal-body .modal-cat{font-family:var(--mono); font-size:11px; color:var(--accent); text-transform:uppercase;}
+.case-section{margin-top:22px;}
+.case-section h4{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-faint); margin-bottom:8px;}
+.case-section p, .case-section .flow{font-size:14.5px; color:var(--text-dim); line-height:1.65;}
+.flow{font-family:var(--mono); background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px 16px; color:var(--text); font-size:13px; overflow-x:auto; white-space:nowrap;}
+.modal-links{display:flex; gap:12px; margin-top:26px; flex-wrap:wrap;}
+.extra-shots{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:10px;}
+.extra-shots img{border-radius:10px; border:1px solid var(--border); width:100%; aspect-ratio:16/10; object-fit:cover;}
+
+/* ---------------- SKILLS ---------------- */
+.skills-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:16px;}
+@media (max-width:980px){ .skills-grid{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:560px){ .skills-grid{grid-template-columns:1fr;} }
+.skill-cat{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px;}
+.skill-cat h3{font-size:14px; font-family:var(--mono); color:var(--accent); text-transform:uppercase; letter-spacing:.05em; margin-bottom:16px; font-weight:600;}
+.skill-item{position:relative; padding:9px 0; border-top:1px solid var(--border); font-size:14px; cursor:default;}
+.skill-item:first-child{border-top:none;}
+.skill-item .usage{display:none; font-size:12px; color:var(--text-dim); margin-top:4px; line-height:1.4;}
+.skill-item:hover .usage, .skill-item:focus-within .usage{display:block;}
+
+/* ---------------- PROCESS ---------------- */
+.process-list{border-top:1px solid var(--border);}
+.process-item{border-bottom:1px solid var(--border); cursor:pointer;}
+.process-head{display:grid; grid-template-columns:52px 1fr 20px; gap:18px; align-items:center; padding:20px 4px;}
+.process-num{font-family:var(--mono); color:var(--text-faint); font-size:14px;}
+.process-title{font-size:17px; font-weight:700;}
+.process-chevron{color:var(--text-faint); transition:transform .25s ease;}
+.process-item.open .process-chevron{transform:rotate(45deg); color:var(--accent);}
+.process-detail{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+.process-item.open .process-detail{max-height:120px;}
+.process-detail p{padding:0 4px 20px 70px; color:var(--text-dim); font-size:14px; max-width:60ch;}
+@media (max-width:600px){ .process-detail p{padding-left:4px;} }
+
+/* ---------------- ABOUT ---------------- */
+.about-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:52px; align-items:center;}
+@media (max-width:860px){ .about-grid{grid-template-columns:1fr;} }
+.about-photo{position:relative; border-radius:18px; overflow:hidden; border:1px solid var(--border-strong); aspect-ratio:4/5;}
+.about-photo img{width:100%; height:100%; object-fit:cover;}
+.about-copy p{color:var(--text-dim); font-size:15.5px; margin-bottom:16px; max-width:58ch;}
+.about-copy strong{color:var(--text);}
+
+/* ---------------- CONTACT ---------------- */
+.contact-box{background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:60px; text-align:center; position:relative; overflow:hidden;}
+@media (max-width:600px){ .contact-box{padding:38px 22px;} }
+.contact-box h2{font-size:clamp(28px,4.5vw,42px); margin-bottom:14px;}
+.contact-box p{color:var(--text-dim); max-width:52ch; margin:0 auto 30px; font-size:16px;}
+.contact-links{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:30px;}
+.contact-links a{font-family:var(--mono); font-size:13px; color:var(--text-dim); border:1px solid var(--border-strong); padding:10px 18px; border-radius:100px; transition:all .2s ease;}
+.contact-links a:hover{color:var(--text); border-color:var(--accent-line); background:var(--accent-soft);}
+
+footer{border-top:1px solid var(--border); padding:36px 0; text-align:center; font-family:var(--mono); font-size:12px; color:var(--text-faint);}
+
+.reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+.reveal.show{opacity:1; transform:translateY(0);}
+
+/* ---------------- CHATBOT ---------------- */
+.chat-fab{position:fixed; bottom:24px; right:24px; z-index:120; width:58px; height:58px; border-radius:50%; background:var(--accent); border:none; color:#fff; font-size:24px; cursor:pointer; box-shadow:0 10px 30px rgba(124,122,255,0.4); display:flex; align-items:center; justify-content:center; transition:transform .2s ease;}
+.chat-fab:hover{transform:scale(1.06);}
+.chat-panel{position:fixed; bottom:96px; right:24px; z-index:121; width:min(380px, calc(100vw - 32px)); max-height:min(70vh, 560px); background:var(--bg-2); border:1px solid var(--border-strong); border-radius:18px; box-shadow:0 30px 70px rgba(0,0,0,0.5); display:flex; flex-direction:column; overflow:hidden; opacity:0; transform:translateY(16px) scale(.97); pointer-events:none; transition:opacity .25s ease, transform .25s ease;}
+.chat-panel.open{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
+.chat-head{padding:16px 18px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px; flex-shrink:0;}
+.chat-head .dot{width:8px; height:8px; border-radius:50%; background:#3ED598;}
+.chat-head strong{font-size:14px;}
+.chat-head span{font-size:11.5px; color:var(--text-faint); display:block;}
+.chat-body{flex:1; overflow-y:auto; padding:16px 18px; display:flex; flex-direction:column; gap:12px; min-height:0;}
+.msg{font-size:13.5px; line-height:1.5; max-width:88%; padding:10px 13px; border-radius:12px;}
+.msg.bot{background:var(--surface); align-self:flex-start; border:1px solid var(--border);}
+.msg.user{background:var(--accent); color:#fff; align-self:flex-end;}
+.suggested{display:flex; flex-wrap:wrap; gap:6px; padding:0 18px 14px; flex-shrink:0; max-height:88px; overflow-y:auto;}
+.suggested button{font-size:11.5px; background:var(--surface); border:1px solid var(--border); color:var(--text-dim); padding:6px 10px; border-radius:100px; cursor:pointer;}
+.suggested button:hover{border-color:var(--accent-line); color:var(--text);}
+.chat-input-row{display:flex; gap:8px; padding:14px; border-top:1px solid var(--border); flex-shrink:0;}
+.chat-input-row input{flex:1; background:var(--surface); border:1px solid var(--border); color:var(--text); padding:10px 12px; border-radius:10px; font-family:var(--font); font-size:13.5px;}
+.chat-input-row button{background:var(--accent); border:none; color:#fff; width:38px; border-radius:10px; cursor:pointer; font-size:15px; flex-shrink:0;}
+@media (max-width:480px){
+  .chat-fab{right:16px; bottom:16px;}
+  .chat-panel{right:12px; left:12px; width:auto; bottom:84px; max-height:min(72vh, calc(100vh - 120px));}
+}
+.typing{display:flex; gap:4px; padding:10px 13px; background:var(--surface); border:1px solid var(--border); border-radius:12px; align-self:flex-start; width:fit-content;}
+.typing span{width:5px; height:5px; border-radius:50%; background:var(--text-faint); animation:blink 1.2s infinite;}
+.typing span:nth-child(2){animation-delay:.2s;} .typing span:nth-child(3){animation-delay:.4s;}
+@keyframes blink{0%,80%,100%{opacity:.3;} 40%{opacity:1;}}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header id="siteHeader">
+  <nav class="wrap">
+    <a href="#top" class="brand">
+      <span class="name">Habeebullah Sulyman</span>
+      <span class="role">AI Automation Specialist</span>
+    </a>
+    <div class="navlinks">
+      <a href="#top" class="navitem">Home</a>
+      <a href="#projects" class="navitem">Projects</a>
+      <a href="#skills" class="navitem">Skills</a>
+      <a href="#services" class="navitem">Services</a>
+      <a href="#process" class="navitem">Process</a>
+      <a href="#about" class="navitem">About</a>
+      <div class="quickicons">
+        <a href="https://github.com/habtech-automation" target="_blank" rel="noopener" aria-label="GitHub" class="quickicon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.1 3.3 9.4 7.9 11 .6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+        </a>
+        <a href="https://wa.me/2348140650545" target="_blank" rel="noopener" aria-label="WhatsApp" class="quickicon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10 9 9.5 7.8 9.3 7.3c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3ZM12 2A10 10 0 0 0 3.3 17l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2Z"/></svg>
+        </a>
+      </div>
+      <a href="#contact" class="btn filled">Start a conversation</a>
+    </div>
+    <button class="mobile-toggle" id="mobileOpen" aria-label="Open menu">☰</button>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-x" id="mobileClose" aria-label="Close menu">×</button>
+  <a href="#top">Home</a>
+  <a href="#projects">Projects</a>
+  <a href="#skills">Skills</a>
+  <a href="#services">Services</a>
+  <a href="#process">Process</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<main id="main">
+<div id="top"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow" id="heroGlow" aria-hidden="true"></div>
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow">AI Automation Specialist</span>
+      <h1>I build AI agents, chatbots, and n8n workflows that automate real business processes.</h1>
+      <p class="lead">Every system connects to the tools your business already runs on, real APIs, databases, and AI models, not just prebuilt integrations, and is handed over fully documented.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn filled">View Projects</a>
+        <a href="#contact" class="btn">Let's Work Together</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="photo-frame">
+        <img src="https://i.imgur.com/U892gqU.jpeg" alt="Habeebullah Sulyman" onerror="this.parentElement.style.background='linear-gradient(150deg,#1c1c22,#0f0f12)'; this.style.display='none';">
+      </div>
+      <div class="float-card fc1"><span class="status-dot"></span> n8n workflow: active</div>
+      <div class="float-card fc2"><span class="status-dot"></span> 8 systems shipped</div>
+      <div class="float-card fc3"><span class="status-dot"></span> AI agent responding</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I BUILD -->
+<section id="what-i-build">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Capabilities</span>
+      <h2>What I build</h2>
+      <p>Eight system types. Hover or tap each one to see what it actually involves.</p>
+    </div>
+    <div class="build-grid reveal">
+      <div class="build-item" tabindex="0"><div class="bi-name">AI Agents</div><div class="bi-desc">Autonomous steps that make decisions and take action inside a workflow.</div><div class="bi-tech">OpenAI · Claude · n8n</div></div>
+      <div class="build-item" tabindex="0"><div class="bi-name">AI Chatbots</div><div class="bi-desc">Conversational systems that answer, qualify, and escalate.</div><div class="bi-tech">WhatsApp · Telegram</div></div>
+      <div class="build-item" tabindex="0"><div class="bi-name">Voice Agents</div><div class="bi-desc">Calls that answer, qualify, and book without a human on the line.</div><div class="bi-tech">Vapi</div></div>
+      <div class="build-item" tabindex="0"><div class="bi-name">CRM Automation</div><div class="bi-desc">Leads scored, routed, and followed up without manual entry.</div><div class="bi-tech">HubSpot · GoHighLevel</div></div>
+      <div class="build-item" tabindex="0"><div class="bi-name">RAG Knowledge Assistants</div><div class="bi-desc">Answers grounded in your actual documents, not a guess.</div><div class="bi-tech">Pinecone · Supabase · Cohere</div></div>
+      <div class="build-item" tabindex="0"><div class="bi-name">Document Automation</div><div class="bi-desc">Extraction and structured analysis of contracts, invoices, resumes.</div><div class="bi-tech">OCR · AI extraction</div></div>
+      <div class="build-item" tabindex="0"><div class="bi-name">Customer Support Automation</div><div class="bi-desc">Tickets classified, resolved, or routed automatically.</div><div class="bi-tech">Gmail · Slack</div></div>
+      <div class="build-item" tabindex="0"><div class="bi-name">Business Workflow Automation</div><div class="bi-desc">Payments, payroll, onboarding, running without a spreadsheet.</div><div class="bi-tech">Paystack · Sheets</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Selected Work</span>
+      <h2>Featured projects</h2>
+      <p>Eight projects that show how I design AI agents, automate workflows, build integrations, and write reliable logic around real business processes. Click any card for the full architecture and case study.</p>
+    </div>
+    <div class="project-grid reveal" id="projectGrid"></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Technical Skills</span>
+      <h2>How I actually use these tools</h2>
+      <p>Hover any tool for what it's for, not just that I've touched it.</p>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-cat">
+        <h3>AI &amp; LLM</h3>
+        <div class="skill-item" tabindex="0">OpenAI<div class="usage">LLM-powered classification, extraction, and agents</div></div>
+        <div class="skill-item" tabindex="0">Claude<div class="usage">Reasoning-heavy classification and structured output</div></div>
+        <div class="skill-item" tabindex="0">Gemini<div class="usage">Document OCR and multimodal extraction</div></div>
+        <div class="skill-item" tabindex="0">OpenRouter<div class="usage">Model routing across providers</div></div>
+        <div class="skill-item" tabindex="0">RAG &amp; Embeddings<div class="usage">Retrieval-grounded answers over real documents</div></div>
+      </div>
+      <div class="skill-cat">
+        <h3>Automation</h3>
+        <div class="skill-item" tabindex="0">n8n<div class="usage">Workflow orchestration and business automation</div></div>
+        <div class="skill-item" tabindex="0">Make.com<div class="usage">Visual automation for client stacks already built on it</div></div>
+        <div class="skill-item" tabindex="0">Webhooks &amp; APIs<div class="usage">Event-driven triggers between systems</div></div>
+        <div class="skill-item" tabindex="0">Sub-workflows<div class="usage">Breaking complex logic into reusable pieces</div></div>
+        <div class="skill-item" tabindex="0">Error handling<div class="usage">Retries, validation, and graceful failure</div></div>
+        <div class="skill-item" tabindex="0">Human-in-the-loop<div class="usage">Approval steps where AI shouldn't act alone</div></div>
+      </div>
+      <div class="skill-cat">
+        <h3>Development</h3>
+        <div class="skill-item" tabindex="0">Python<div class="usage">Custom logic when native nodes aren't enough</div></div>
+        <div class="skill-item" tabindex="0">JavaScript<div class="usage">Data transformation inside workflows</div></div>
+        <div class="skill-item" tabindex="0">REST APIs<div class="usage">Connecting systems that don't have native nodes</div></div>
+        <div class="skill-item" tabindex="0">JSON<div class="usage">Structured data between every step</div></div>
+      </div>
+      <div class="skill-cat">
+        <h3>Data</h3>
+        <div class="skill-item" tabindex="0">Supabase<div class="usage">Database, auth, and vector storage</div></div>
+        <div class="skill-item" tabindex="0">PostgreSQL<div class="usage">Structured persistent data</div></div>
+        <div class="skill-item" tabindex="0">Pinecone<div class="usage">Vector search for RAG systems</div></div>
+        <div class="skill-item" tabindex="0">Google Sheets<div class="usage">Lightweight data layer for smaller builds</div></div>
+        <div class="skill-item" tabindex="0">Airtable<div class="usage">Structured data with a usable interface</div></div>
+        <div class="skill-item" tabindex="0">Monday.com<div class="usage">Client-facing project and data tracking</div></div>
+      </div>
+      <div class="skill-cat">
+        <h3>Business Integrations</h3>
+        <div class="skill-item" tabindex="0">HubSpot<div class="usage">CRM automation and lead routing</div></div>
+        <div class="skill-item" tabindex="0">GoHighLevel<div class="usage">CRM and follow-up sequencing</div></div>
+        <div class="skill-item" tabindex="0">Shopify<div class="usage">Order and fulfilment webhooks</div></div>
+        <div class="skill-item" tabindex="0">Twilio / WhatsApp / Telegram<div class="usage">Multi-channel messaging</div></div>
+        <div class="skill-item" tabindex="0">Gmail / Slack / Calendar<div class="usage">Notifications and team routing</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Services</span>
+      <h2>What I can build for you</h2>
+    </div>
+    <div class="build-grid reveal">
+      <div class="build-item"><div class="bi-name">AI Agent Development</div><div class="bi-desc" style="max-height:60px;">→ Build AI agents that classify, decide, and trigger actions.</div></div>
+      <div class="build-item"><div class="bi-name">AI Chatbot Development</div><div class="bi-desc" style="max-height:60px;">→ Build support, sales, and knowledge-base chatbots.</div></div>
+      <div class="build-item"><div class="bi-name">Workflow Automation</div><div class="bi-desc" style="max-height:60px;">→ Connect business tools and automate repetitive processes.</div></div>
+      <div class="build-item"><div class="bi-name">CRM &amp; Lead Automation</div><div class="bi-desc" style="max-height:60px;">→ Qualify, route, and follow up with leads automatically.</div></div>
+      <div class="build-item"><div class="bi-name">RAG Knowledge Assistants</div><div class="bi-desc" style="max-height:60px;">→ Build assistants grounded in your company documents.</div></div>
+      <div class="build-item"><div class="bi-name">Document Processing</div><div class="bi-desc" style="max-height:60px;">→ Extract and analyze invoices, resumes, and contracts.</div></div>
+      <div class="build-item"><div class="bi-name">Voice AI</div><div class="bi-desc" style="max-height:60px;">→ Calls answered, qualified, and booked without a human.</div></div>
+      <div class="build-item"><div class="bi-name">Business Process Automation</div><div class="bi-desc" style="max-height:60px;">→ Run payments, payroll, and onboarding without a spreadsheet.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How I Build</span>
+      <h2>Seven steps, every project</h2>
+    </div>
+    <div class="process-list reveal" id="processList"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap about-grid reveal">
+    <div class="about-photo">
+      <img src="https://i.imgur.com/U892gqU.jpeg" alt="Habeebullah Sulyman" onerror="this.parentElement.style.background='linear-gradient(150deg,#1c1c22,#0f0f12)'; this.style.display='none';">
+    </div>
+    <div class="about-copy">
+      <span class="eyebrow">About</span>
+      <h2 style="font-size:28px; margin-top:14px;">Hi, I'm Habeebullah, an AI Automation Specialist.</h2>
+      <p>I specialize in building AI agents, chatbots, and automated workflows using n8n, APIs, and AI models like OpenAI and Claude. I'm drawn to the systems layer of a business: how a lead becomes a qualified contact, how a document turns into structured data, how a question gets answered without anyone typing a reply.</p>
+      <p>I work directly, one project at a time. I map the actual flow before building anything, then test it against real edge cases, not just the happy path. I enjoy the parts most people skip, error handling, validation, the small decisions that decide whether a workflow actually holds up once it's live.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap reveal">
+    <div class="contact-box">
+      <span class="eyebrow" style="justify-content:center;">Contact</span>
+      <h2>Have a process worth automating?</h2>
+      <p>Tell me what's manual, repetitive, or error-prone. I'll tell you honestly whether it's worth automating.</p>
+      <a href="mailto:habtech99@gmail.com" class="btn filled">Email me</a>
+      <p style="margin-top:22px; font-size:13.5px;">Prefer a quick answer right now? Chat with my AI assistant in the corner.</p>
+      <div class="contact-links">
+        <a href="https://github.com/habtech-automation" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/habtech" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.upwork.com/freelancers/~0107603d5bef3cded5?mp_source=share" target="_blank" rel="noopener">Upwork</a>
+        <a href="https://wa.me/2348140650545" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>Habeebullah Sulyman. AI automation systems that work quietly in the background, so your business doesn't have to.</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-top">
+      <img id="modalImg" src="" alt="">
+      <button class="modal-close" id="modalClose" aria-label="Close case study">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- CHATBOT -->
+<button class="chat-fab" id="chatFab" aria-label="Ask my AI assistant">💬</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="AI assistant chat">
+  <div class="chat-head">
+    <span class="dot"></span>
+    <div>
+      <strong>Ask my AI assistant</strong>
+      <span>Ask about my projects &amp; stack</span>
+    </div>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">Hi, I'm Habeebullah's AI portfolio assistant. Ask me about his projects, technical skills, automation experience, or the systems he builds.</div>
+  </div>
+  <div class="suggested" id="suggested">
+    <button>What AI automation projects has he built?</button>
+    <button>Does he work with n8n?</button>
+    <button>Tell me about his RAG chatbot.</button>
+    <button>What APIs and CRMs does he work with?</button>
+    <button>How can I contact him?</button>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Type a question..." aria-label="Message">
+    <button id="chatSend" aria-label="Send">➤</button>
+  </div>
+</div>
+
+<script>
+/* ============ PROJECT DATA ============ */
+const projects = [
+  {
+    name: "AI Lead Qualification & Follow-Up",
+    cat: "CRM Automation",
+    img: "https://i.imgur.com/OPsXMx0.png",
+    img2: "https://i.imgur.com/zywEH0k.png",
+    tags: ["HubSpot","n8n","AI Agent"],
+    short: "Every inbound lead scored and routed the moment it arrives, no manual triage.",
+    problem: "Inbound leads sat unreviewed, and follow-up depended on someone remembering to do it.",
+    solution: "A webhook-triggered workflow that scores each lead with AI, updates HubSpot, and starts the right follow-up sequence automatically.",
+    flow: "Lead → Webhook → AI qualification → HubSpot CRM update → Follow-up sequence → Notification",
+    ai: "Classifies the lead against qualification criteria and drafts a suggested next action.",
+    integrations: "HubSpot, Gmail, n8n",
+    reliability: "Structured output validation before writing to CRM, so every lead lands with consistent fields.",
+    outcome: "Removes manual lead triage and keeps CRM data consistent without someone entering it by hand.",
+    github: "https://github.com/habtech-automation/n8n-ai-lead-qualification-followup-system"
+  },
+  {
+    name: "Multi-Channel AI Receptionist",
+    cat: "AI Chatbot",
+    img: "https://i.imgur.com/LUDplzy.png",
+    video: "https://habtech.neetorecord.com/watch/00d397bd5c5d95da094d",
+    tags: ["Twilio","Telegram","OpenRouter"],
+    short: "Answers WhatsApp, Telegram, and voice enquiries, and escalates what it can't handle.",
+    problem: "Enquiries arriving on WhatsApp, Telegram, and voice were only answered during working hours, each channel handled separately.",
+    solution: "One AI agent that answers across WhatsApp, Telegram, and voice, checks a live calendar, and escalates to a human when a request goes beyond what it can safely handle.",
+    flow: "Message (WhatsApp/Telegram/Voice) → Webhook → AI agent → Calendar/Docs lookup → Response or Human escalation",
+    ai: "Understands the enquiry, decides whether it can answer directly or needs a human, and drafts the reply.",
+    integrations: "Twilio, Telegram, Google Docs/Sheets, OpenRouter",
+    reliability: "Explicit escalation path for anything the agent isn't confident about, so nothing gets a wrong answer silently.",
+    outcome: "Enquiries get answered outside office hours instead of waiting until someone's back at a desk.",
+    github: "https://github.com/habtech-automation/n8n-multi-channel-ai-receptionist"
+  },
+  {
+    name: "RAG Knowledge Assistant",
+    cat: "RAG Chatbot",
+    img: "https://i.imgur.com/O7iNHSE.png",
+    tags: ["Supabase","Cohere","Embeddings"],
+    short: "Retrieves the relevant document passage before answering, instead of guessing.",
+    problem: "Answering repeat questions meant someone searching through documents each time.",
+    solution: "A chatbot that retrieves the relevant passage from a document store before generating an answer, instead of relying on the model's general knowledge.",
+    flow: "Question → Embedding → Vector search (Supabase) → Retrieved context → AI response",
+    ai: "Cohere embeddings convert the question into a vector, matched against stored document embeddings, and the AI answers using only the retrieved context.",
+    integrations: "Supabase, Cohere, Google Docs",
+    reliability: "Answers are grounded in retrieved source text rather than open-ended generation, reducing made-up answers.",
+    outcome: "Questions get answered from the business's actual documents, not a generic guess.",
+    github: "https://github.com/habtech-automation"
+  },
+  {
+    name: "AI Customer Support Ticket Triage",
+    cat: "Support Automation",
+    img: "https://i.imgur.com/Rc6JJLb.png",
+    tags: ["Supabase","Slack","Gmail"],
+    short: "Classifies and resolves simple tickets, routes the rest to a human.",
+    problem: "Incoming support tickets needed to be manually read and routed before anyone could act on them.",
+    solution: "A system that classifies each ticket, resolves the straightforward ones automatically, and routes anything complex to the right person.",
+    flow: "Ticket → Gmail/Webhook → AI classification → Auto-resolve or route to Slack",
+    ai: "Categorizes the ticket type and urgency, and drafts a resolution for simple, well-understood cases.",
+    integrations: "Gmail, Supabase, Slack",
+    reliability: "Only auto-resolves cases that match known patterns, anything uncertain goes to a human via Slack.",
+    outcome: "Simple tickets get handled immediately, and the team only sees the ones that actually need attention.",
+    github: "https://github.com/habtech-automation"
+  },
+  {
+    name: "AI Contract Review & Risk Flagging",
+    cat: "Document Automation",
+    img: "https://i.imgur.com/dpIOKnV.png",
+    tags: ["Google Drive","AI Agent","Sheets"],
+    short: "Reads a contract and flags risky clauses before anyone signs.",
+    problem: "Reviewing contracts line by line for risky clauses is slow and easy to miss something in.",
+    solution: "A workflow that reads an uploaded contract and flags clauses worth a second look before anyone signs.",
+    flow: "Contract upload (Google Drive) → AI analysis → Risk flags → Gmail/Slack summary",
+    ai: "Reads the document and extracts clauses matching risk categories, returning structured findings rather than free-form text.",
+    integrations: "Google Drive, Gmail, Slack, Google Sheets",
+    reliability: "Structured output format keeps flagged clauses consistent and easy to scan, rather than a wall of text.",
+    outcome: "Gives a first-pass risk read before a human does the final review, not a replacement for one.",
+    github: "https://github.com/habtech-automation"
+  },
+  {
+    name: "AI Failed Payment & Subscription Recovery",
+    cat: "Workflow Automation",
+    img: "https://i.imgur.com/vTkGQGa.png",
+    tags: ["Webhook","Gmail","LLM"],
+    short: "Catches failed payments and retries automatically, on schedule.",
+    problem: "Failed payments were only noticed when a customer complained, and retries were manual or nonexistent.",
+    solution: "A workflow that watches for failed payments, retries on a schedule, and notifies the right person of the outcome.",
+    flow: "Failed payment webhook → Conditional logic → Retry schedule → Gmail notification",
+    ai: "An LLM step drafts the customer-facing message based on the failure reason, so the tone matches the situation.",
+    integrations: "Webhook, Gmail, Google Sheets",
+    reliability: "Conditional logic prevents duplicate retries on the same failed payment, and every attempt is logged to a sheet.",
+    outcome: "Failed payments get chased automatically instead of falling through until a customer notices.",
+    github: "https://github.com/habtech-automation/n8n-ai-failed-payment-recovery"
+  },
+  {
+    name: "Order to Delivery Automation",
+    cat: "State Machine / Logistics",
+    img: "https://i.imgur.com/o56ePkK.png",
+    tags: ["Webhooks","Google Sheets","API"],
+    short: "Round-robin rider assignment with token-secured handoffs, zero manual dispatch.",
+    problem: "Customers had no visibility into their order after checkout, and riders were assigned manually and unevenly.",
+    solution: "A 3-workflow system that takes an order from payment confirmation through delivery, automatically assigning and coordinating riders.",
+    flow: "Paid order → Webhook → Dedupe check → Sheets → Rider offer (round robin) → Accept/Reject → Delivery confirmation → Customer notified",
+    ai: "This project doesn't use an LLM. It's rule-based state management, included here to show that not every automation needs AI, sometimes the engineering challenge is state and reliability.",
+    integrations: "Google Sheets (data layer), email notifications, webhook-based order intake",
+    reliability: "Token-based validation on every rider action prevents replayed links or double-taps. Round-robin fairness. Automatic re-offer loop when a rider rejects. Single source of truth in the data layer.",
+    outcome: "Removes manual dispatch decisions entirely, and keeps every order's full history visible without touching the workflow tool.",
+    github: "https://github.com/habtech-automation"
+  },
+  {
+    name: "AI Recruitment Assistant",
+    cat: "Document Automation",
+    img: "https://i.imgur.com/D3exqRp.jpeg",
+    tags: ["Google Drive","Gmail","Sheets"],
+    short: "Extracts and ranks candidates from submitted resumes automatically.",
+    problem: "Screening resumes for a role means reading each one manually before you know who's worth a closer look.",
+    solution: "A system that pulls submitted resumes, extracts and analyzes candidate information, and ranks candidates automatically.",
+    flow: "Application (Google Form) → File extractor → AI analysis → Ranked list (Sheets) → Gmail notification",
+    ai: "Extracts structured candidate data from unstructured resume text and scores it against the role's criteria.",
+    integrations: "Google Drive, Google Form, Gmail, Google Sheets",
+    reliability: "File extraction step validates the document before analysis, so malformed uploads don't silently produce bad rankings.",
+    outcome: "Surfaces the strongest candidates first instead of reading every application in submission order.",
+    github: "https://github.com/habtech-automation"
+  }
+];
+
+const grid = document.getElementById('projectGrid');
+projects.forEach((p, i) => {
+  const card = document.createElement('button');
+  card.className = 'project-card';
+  card.innerHTML = `
+    <div class="project-media">
+      <img src="${p.img}" alt="${p.name} workflow screenshot" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(150deg,#1c1c22,#101014)'; this.remove();">
+      ${p.video ? '<span class="video-badge">▶ Demo video</span>' : ''}
+    </div>
+    <div class="project-body">
+      <div class="project-cat">${p.cat}</div>
+      <h3>${p.name}</h3>
+      <p>${p.short}</p>
+      <div class="project-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
+      <div class="view-case">View case study →</div>
+    </div>`;
+  card.addEventListener('click', () => openModal(i));
+  grid.appendChild(card);
+});
+
+const overlay = document.getElementById('modalOverlay');
+function openModal(i){
+  const p = projects[i];
+  document.getElementById('modalImg').src = p.img;
+  document.getElementById('modalImg').alt = p.name + ' workflow screenshot';
+  document.getElementById('modalBody').innerHTML = `
+    <div class="modal-cat">${p.cat}</div>
+    <h2 id="modalTitle">${p.name}</h2>
+    <div class="case-section"><h4>Problem</h4><p>${p.problem}</p></div>
+    <div class="case-section"><h4>Solution</h4><p>${p.solution}</p></div>
+    <div class="case-section"><h4>Workflow</h4><div class="flow">${p.flow}</div></div>
+    ${p.img2 ? `<div class="case-section"><h4>More Screenshots</h4><div class="extra-shots"><img src="${p.img}" alt="${p.name} screenshot 1" loading="lazy"><img src="${p.img2}" alt="${p.name} screenshot 2" loading="lazy"></div></div>` : ''}
+    <div class="case-section"><h4>AI Logic</h4><p>${p.ai}</p></div>
+    <div class="case-section"><h4>Integrations</h4><p>${p.integrations}</p></div>
+    <div class="case-section"><h4>Reliability</h4><p>${p.reliability}</p></div>
+    <div class="case-section"><h4>Outcome</h4><p>${p.outcome}</p></div>
+    <div class="modal-links">
+      ${p.video ? `<a href="${p.video}" target="_blank" rel="noopener" class="btn filled">Watch demo</a>` : ''}
+      <a href="${p.github}" target="_blank" rel="noopener" class="btn">View on GitHub</a>
+    </div>`;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){ overlay.classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('modalClose').addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+/* ============ PROCESS ============ */
+const steps = [
+  ["Understand","Understand the business problem and requirements."],
+  ["Design","Map triggers, data flow, AI decisions, integrations and edge cases."],
+  ["Build","Build the workflow using n8n, APIs, AI models and databases."],
+  ["Test","Test both normal scenarios and failure/edge cases."],
+  ["Deploy","Connect production credentials and deploy the workflow."],
+  ["Monitor","Add logging, error handling and alerts where necessary."],
+  ["Document","Document the workflow and handoff process."]
+];
+const pList = document.getElementById('processList');
+steps.forEach((s,i)=>{
+  const item = document.createElement('div');
+  item.className = 'process-item';
+  item.innerHTML = `<div class="process-head"><span class="process-num">0${i+1}</span><span class="process-title">${s[0]}</span><span class="process-chevron">+</span></div><div class="process-detail"><p>${s[1]}</p></div>`;
+  item.querySelector('.process-head').addEventListener('click', ()=>{
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.process-item').forEach(el=>el.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+  pList.appendChild(item);
+});
+
+/* ============ NAV ============ */
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', ()=>{ header.classList.toggle('scrolled', window.scrollY > 30); });
+const mobileMenu = document.getElementById('mobileMenu');
+document.getElementById('mobileOpen').addEventListener('click', ()=>mobileMenu.classList.add('open'));
+document.getElementById('mobileClose').addEventListener('click', ()=>mobileMenu.classList.remove('open'));
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>mobileMenu.classList.remove('open')));
+
+const sections = ['top','projects','skills','services','process','about','contact'];
+const navItems = document.querySelectorAll('.navitem');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navItems.forEach(a=>a.classList.remove('active'));
+      const match = document.querySelector(`.navitem[href="#${e.target.id}"]`);
+      if(match) match.classList.add('active');
+    }
+  });
+}, {rootMargin:'-40% 0px -50% 0px'});
+sections.forEach(id=>{ const el = document.getElementById(id); if(el) io.observe(el); });
+
+/* ============ REVEAL ============ */
+const revealIO = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); revealIO.unobserve(e.target); } });
+}, {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>revealIO.observe(el));
+
+/* ============ HERO CURSOR GLOW ============ */
+const heroGlow = document.getElementById('heroGlow');
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!prefersReduced){
+  document.querySelector('.hero').addEventListener('mousemove', (e)=>{
+    const x = (e.clientX / window.innerWidth - 0.5) * 40;
+    const y = (e.clientY / window.innerHeight - 0.5) * 40;
+    heroGlow.style.transform = `translate(calc(-50% + ${x}px), ${y}px)`;
+  });
+}
+
+/* ============ CHATBOT ============ */
+// Connected to the real n8n Agent webhook. Sends {message, sessionId} and expects {reply} back.
+const ASSISTANT_WEBHOOK_URL = "https://habtechie.me/webhook/portfolio-chat";
+
+// One sessionId per browser tab visit, reused for every message so the n8n
+// Simple Memory node can keep context across a conversation.
+const CHAT_SESSION_ID = (() => {
+  const existing = sessionStorage.getItem('habtechie_chat_session');
+  if (existing) return existing;
+  const id = 'sess_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+  sessionStorage.setItem('habtechie_chat_session', id);
+  return id;
+})();
+
+const localAnswers = [
+  { k:["project","built","automation"], a:"He's built 8 featured systems: lead qualification, a multi-channel receptionist, a RAG knowledge assistant, support ticket triage, contract review, payment recovery, order-to-delivery automation, and a recruitment assistant. Scroll to Projects to see each one." },
+  { k:["n8n"], a:"Yes, n8n is his primary automation tool for orchestrating every workflow, connecting AI models, APIs, and databases together." },
+  { k:["rag","knowledge"], a:"His RAG Knowledge Assistant retrieves the relevant passage from a document store using Cohere embeddings and Supabase vector search before generating an answer, so responses are grounded in real documents." },
+  { k:["api","crm"], a:"He works with HubSpot and GoHighLevel for CRM automation, and integrates REST APIs, webhooks, Twilio, Shopify, Paystack, and more depending on the project." },
+  { k:["contact","reach","hire"], a:"You can email habtech99@gmail.com, or reach out on LinkedIn or Upwork, links are in the Contact section." }
+];
+function matchLocal(msg){
+  const lower = msg.toLowerCase();
+  for(const entry of localAnswers){ if(entry.k.some(k=>lower.includes(k))) return entry.a; }
+  return "I'm still getting fully wired up to a live backend. Meanwhile, take a look at the Projects and Skills sections, or email habtech99@gmail.com directly for a fast answer.";
+}
+
+const chatFab = document.getElementById('chatFab');
+const chatPanel = document.getElementById('chatPanel');
+const chatBody = document.getElementById('chatBody');
+const chatInput = document.getElementById('chatInput');
+chatFab.addEventListener('click', ()=>chatPanel.classList.toggle('open'));
+
+function addMsg(text, who){
+  const d = document.createElement('div');
+  d.className = 'msg ' + who;
+  d.textContent = text;
+  chatBody.appendChild(d);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+async function sendMessage(text){
+  if(!text.trim()) return;
+  addMsg(text, 'user');
+  chatInput.value = '';
+  const typing = document.createElement('div');
+  typing.className = 'typing';
+  typing.innerHTML = '<span></span><span></span><span></span>';
+  chatBody.appendChild(typing);
+  chatBody.scrollTop = chatBody.scrollHeight;
+
+  let reply;
+  if(ASSISTANT_WEBHOOK_URL){
+    try{
+      const res = await fetch(ASSISTANT_WEBHOOK_URL, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({message:text, sessionId: CHAT_SESSION_ID})
+      });
+      const data = await res.json();
+      reply = data.reply || matchLocal(text);
+    }catch(err){
+      reply = "I couldn't reach my backend just now. " + matchLocal(text);
+    }
+  } else {
+    await new Promise(r=>setTimeout(r, 500));
+    reply = matchLocal(text);
+  }
+  typing.remove();
+  addMsg(reply, 'bot');
+}
+
+document.getElementById('chatSend').addEventListener('click', ()=>sendMessage(chatInput.value));
+chatInput.addEventListener('keydown', e=>{ if(e.key === 'Enter') sendMessage(chatInput.value); });
+document.querySelectorAll('.suggested button').forEach(btn=>{
+  btn.addEventListener('click', ()=>sendMessage(btn.textContent));
+});
+</script>
+</body>
+</html>
